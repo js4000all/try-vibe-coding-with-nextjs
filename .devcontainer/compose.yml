@@ -4,6 +4,24 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ../:/usr/src/app # ローカルをコンテナ内にマウント
+      - ..:/usr/src/app:cached
     command: sleep infinity
-    
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/nextjs_dev
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=nextjs_dev
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres-data:
