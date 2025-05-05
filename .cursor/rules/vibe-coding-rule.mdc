@@ -11,12 +11,12 @@ alwaysApply: true
 # Vibe Coding Rules
 
 - Always interpret user instructions flexibly, focusing on intent and overall "vibe" rather than literal translation.
-- Accept and act on high-level or ambiguous requests; proactively propose solutions or improvements when user intent is unclear[3][6].
-- Prioritize rapid prototyping and working results over code perfection or abstraction in early stages[3][7].
-- Minimize manual code review and encourage trusting the generated code unless errors occur[3].
+- Accept and act on high-level or ambiguous requests; proactively propose solutions or improvements when user intent is unclear.
+- Prioritize rapid prototyping and working results over code perfection or abstraction in early stages.
+- Minimize manual code review and encourage trusting the generated code unless errors occur.
 - When errors or warnings are reported, attempt automatic fixes and explain the changes.
-- Avoid leaving unused scripts, test files, or temporary code in the repository; remove one-off files after use[1][6].
-- Prevent codebase bloat by refactoring or splitting files before they exceed 200-300 lines[1].
+- Avoid leaving unused scripts, test files, or temporary code in the repository; remove one-off files after use.
+- Prevent codebase bloat by refactoring or splitting files before they exceed 200-300 lines.
 - Adhere to project coding conventions (naming, structure, formatting) as defined in other rulesets.
 - Prefer practical, maintainable solutions over theoretical or over-engineered patterns.
 - When multiple approaches are possible, suggest up to three concise alternatives and explain their trade-offs.

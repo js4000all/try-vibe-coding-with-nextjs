@@ -1,6 +1,6 @@
 ---
-description: 
-globs: 
+description:
+globs:
 alwaysApply: false
 ---
 ---
@@ -11,12 +11,12 @@ alwaysApply: false
 
 # Compose YAML Rules
 
-- Do NOT include the `version` field at the top level of the compose file. Omit it entirely to avoid warnings with recent Docker Compose versions[5][8].
-- When defining service ports, only include ports in the `ports` section if they need to be accessible from outside the Compose network (e.g., for development, public APIs, or reverse proxies).  
-  Do NOT specify ports in the `ports` section solely for inter-container communication; rely on Docker's internal networking for service-to-service access[3][7].
-- Use clear, descriptive service names and keep services modular and purpose-driven[3].
-- Use named volumes for persistent data and define them at the bottom of the file for clarity[3].
-- Leverage environment variables for configuration, preferably via `.env` files, to avoid hardcoding sensitive information[3].
-- Define custom networks explicitly if you need to control service isolation or communication[3].
+- Do NOT include the `version` field at the top level of the compose file. Omit it entirely to avoid warnings with recent Docker Compose versions.
+- When defining service ports, only include ports in the `ports` section if they need to be accessible from outside the Compose network (e.g., for development, public APIs, or reverse proxies).
+  Do NOT specify ports in the `ports` section solely for inter-container communication; rely on Docker's internal networking for service-to-service access.
+- Use clear, descriptive service names and keep services modular and purpose-driven.
+- Use named volumes for persistent data and define them at the bottom of the file for clarity.
+- Leverage environment variables for configuration, preferably via `.env` files, to avoid hardcoding sensitive information.
+- Define custom networks explicitly if you need to control service isolation or communication.
 - Add concise comments to explain non-obvious configuration choices.
 
