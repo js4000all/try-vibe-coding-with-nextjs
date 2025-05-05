@@ -80,4 +80,24 @@ alwaysApply: true
 5. **Protection Rules**
    - No direct pushes to `main`
    - Require at least one review for pull requests
-   - Req
+   - Require passing tests before merge
+
+# Dev Container Rules
+
+1. **Configuration Changes**
+   - When modifying dev container configuration (Dockerfile, compose.yml, etc.):
+     - Do not commit changes immediately
+     - Present the changes for review
+     - Wait for user approval before proceeding
+     - Changes should be tested in the current session
+
+2. **Authentication and Secrets**
+   - Handle authentication tokens and secrets through environment variables
+   - Do not commit sensitive information
+   - Document the required environment variables
+   - Use volume mounts for persistent authentication when appropriate
+
+3. **Container State**
+   - Be aware that container state is temporary
+   - Document any manual setup steps required after container restart
+   - Consider persistent storage solutions for development data
