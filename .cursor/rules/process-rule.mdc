@@ -1,0 +1,24 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Process rules for iterative implementation and refactoring in vibe coding workflows.
+alwaysApply: true
+---
+
+# Process Rules
+
+- Limit the scope of each implementation task as much as possible; implement only one small feature or change at a time[1][5].
+- Alternate between implementation phases and refactoring phases.
+- During implementation phases:
+  - Prioritize getting things working over abstraction or unification with existing code.
+  - Do not focus on code reuse or generalization at this stage.
+  - Always write appropriate tests for any new code.
+- During refactoring phases:
+  - Focus exclusively on improving code structure, readability, and maintainability.
+  - Do not add new features or change existing functionality.
+- After completing each phase (implementation or refactoring), always create a commit to record the changes.
+- Prefer end-to-end tests for user-facing features, but include unit tests as needed[1].
+- Avoid accumulating large, unreviewed changes; keep iterations small and frequent.
