@@ -38,3 +38,46 @@ alwaysApply: true
 - After completing each phase (implementation or refactoring), always create a commit to record the changes.
 - Prefer end-to-end tests for user-facing features, but include unit tests as needed.
 - Avoid accumulating large, unreviewed changes; keep iterations small and frequent.
+
+# Branch Management Rules
+
+## Branch Naming Convention
+- `main`: Production branch
+- `dev`: Development branch
+- `feature/*`: Feature development branches
+- `fix/*`: Bug fix branches
+- `docs/*`: Documentation update branches
+
+## Branch Operation Rules
+1. **Basic Rules**
+   - Keep `main` branch always deployable
+   - Develop new features in `feature/*` branches
+   - Fix bugs in `fix/*` branches
+   - Update documentation in `docs/*` branches
+
+2. **Branch Creation**
+   - Create new branches from `dev`
+   - Use descriptive branch names
+   - One feature/fix per branch
+
+3. **Merge Rules**
+   - Merge feature branches to `dev` after completion
+   - Merge `dev` to `main` after testing
+   - Create pull requests for all merges
+   - Include clear descriptions in pull requests
+
+4. **Commit Rules**
+   - Use clear commit messages
+   - Use prefixes to indicate change type:
+     - `feat:` New features
+     - `fix:` Bug fixes
+     - `docs:` Documentation updates
+     - `style:` Code style changes
+     - `refactor:` Refactoring
+     - `test:` Test additions/modifications
+     - `chore:` Other changes
+
+5. **Protection Rules**
+   - No direct pushes to `main`
+   - Require at least one review for pull requests
+   - Req
