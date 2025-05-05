@@ -1,6 +1,6 @@
 ---
-description: 
-globs: 
+description:
+globs:
 alwaysApply: true
 ---
 ---
@@ -8,9 +8,25 @@ description: Process rules for iterative implementation and refactoring in vibe 
 alwaysApply: true
 ---
 
-# Process Rules
+# Work Process Rules
 
-- Limit the scope of each implementation task as much as possible; implement only one small feature or change at a time[1][5].
+- Always separate different types of tasks (e.g., rule changes, environment setup, feature implementation) into distinct commits.
+- Before starting a new task:
+  1. Check for uncommitted changes using `git status`
+  2. If changes exist, commit them first
+  3. Only proceed with new tasks after all changes are committed
+- After completing each task:
+  1. Create a commit with a descriptive message
+  2. Present the next possible tasks for review
+  3. Wait for user approval before proceeding
+- When multiple changes are needed:
+  1. Break them down into smaller, independent tasks
+  2. Complete and commit each task separately
+  3. Maintain a clear separation between different types of changes
+
+# Implementation Process Rules
+
+- Limit the scope of each implementation task as much as possible; implement only one small feature or change at a time.
 - Alternate between implementation phases and refactoring phases.
 - During implementation phases:
   - Prioritize getting things working over abstraction or unification with existing code.
@@ -20,5 +36,5 @@ alwaysApply: true
   - Focus exclusively on improving code structure, readability, and maintainability.
   - Do not add new features or change existing functionality.
 - After completing each phase (implementation or refactoring), always create a commit to record the changes.
-- Prefer end-to-end tests for user-facing features, but include unit tests as needed[1].
+- Prefer end-to-end tests for user-facing features, but include unit tests as needed.
 - Avoid accumulating large, unreviewed changes; keep iterations small and frequent.
