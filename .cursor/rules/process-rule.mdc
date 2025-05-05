@@ -1,9 +1,4 @@
 ---
-description:
-globs:
-alwaysApply: true
----
----
 description: Process rules for iterative implementation and refactoring in vibe coding workflows.
 alwaysApply: true
 ---
@@ -101,3 +96,53 @@ alwaysApply: true
    - Be aware that container state is temporary
    - Document any manual setup steps required after container restart
    - Consider persistent storage solutions for development data
+
+# Pull Request Process
+
+1. **Before Creating PR**
+   - Ensure all changes are committed and pushed
+   - Run tests and verify functionality
+   - Update documentation if needed
+   - Check for any merge conflicts
+
+2. **PR Creation Steps**
+   - Use `gh pr create` command with appropriate options:
+     ```bash
+     gh pr create \
+       --title "feat: implement feature X" \
+       --body "## Changes
+       - Implemented feature X
+       - Added tests
+       - Updated documentation
+
+       ## Testing
+       - [ ] Unit tests passed
+       - [ ] E2E tests passed
+       - [ ] Manual testing completed
+
+       ## Related Issues
+       - Closes #123" \
+       --base dev \
+       --label "enhancement" \
+       --reviewer "js4000all"
+     ```
+
+3. **PR Description Template**
+   - Title: Clear and descriptive
+   - Body:
+     - Changes made
+     - Testing performed
+     - Related issues
+     - Screenshots (if applicable)
+     - Deployment notes (if applicable)
+
+4. **After PR Creation**
+   - Monitor CI/CD status
+   - Address any automated checks
+   - Update PR if needed
+
+5. **PR Review Process**
+   - Address review comments promptly
+   - Update PR as needed
+   - Keep PR up to date with base branch
+   - Squash commits if requested
