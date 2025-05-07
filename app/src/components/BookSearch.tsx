@@ -38,6 +38,8 @@ export default function BookSearch({ onSelect }: BookSearchProps) {
 
       await saveBook(bookData);
       onSelect(book);
+      setBooks([]);
+      setQuery("");
     } catch (error) {
       setError("書籍の保存に失敗しました");
       console.error("Error saving book:", error);
@@ -53,7 +55,7 @@ export default function BookSearch({ onSelect }: BookSearchProps) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-            placeholder="書籍名、著者名、ISBNで検索"
+            placeholder="書籍名で検索"
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
@@ -73,33 +75,36 @@ export default function BookSearch({ onSelect }: BookSearchProps) {
       {error && <div className="mt-4 text-center text-red-500">{error}</div>}
 
       {books.length > 0 && (
-        <div className="mt-4 space-y-4">
-          {books.map((book) => (
-            <div
-              key={book.id}
-              onClick={() => handleBookSelect(book)}
-              className="flex gap-4 p-4 border rounded-lg cursor-pointer hover:bg-gray-50"
-            >
-              {book.imageLinks?.thumbnail && (
-                <img
-                  src={book.imageLinks.thumbnail}
-                  alt={book.title}
-                  className="w-20 h-28 object-cover"
-                />
-              )}
-              <div>
-                <h3 className="font-medium">{book.title}</h3>
-                {book.authors && (
-                  <p className="text-sm text-gray-600">
-                    {book.authors.join(", ")}
-                  </p>
+        <div className="mt-4">
+          <h3 className="text-lg font-medium mb-2">検索結果</h3>
+          <div className="space-y-4">
+            {books.map((book) => (
+              <div
+                key={book.id}
+                onClick={() => handleBookSelect(book)}
+                className="flex gap-4 p-4 border rounded-lg cursor-pointer hover:bg-gray-50"
+              >
+                {book.imageLinks?.thumbnail && (
+                  <img
+                    src={book.imageLinks.thumbnail}
+                    alt={book.title}
+                    className="w-20 h-28 object-cover"
+                  />
                 )}
-                {book.publisher && (
-                  <p className="text-sm text-gray-500">{book.publisher}</p>
-                )}
+                <div>
+                  <h3 className="font-medium">{book.title}</h3>
+                  {book.authors && (
+                    <p className="text-sm text-gray-600">
+                      {book.authors.join(", ")}
+                    </p>
+                  )}
+                  {book.publisher && (
+                    <p className="text-sm text-gray-500">{book.publisher}</p>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       )}
     </div>

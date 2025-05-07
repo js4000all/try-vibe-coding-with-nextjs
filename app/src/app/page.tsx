@@ -15,9 +15,15 @@ export default function Home() {
   return (
     <main className="min-h-screen p-8">
       <h1 className="text-3xl font-bold text-center mb-8">読書メモ</h1>
-      <div className="space-y-8">
-        <BookSearch onSelect={handleBookSelect} />
-        <BookList />
+      <div className="space-y-12">
+        <section>
+          <h2 className="text-xl font-semibold mb-4">書籍検索</h2>
+          <BookSearch onSelect={handleBookSelect} />
+        </section>
+        <section>
+          <h2 className="text-xl font-semibold mb-4">保存済み書籍</h2>
+          <BookList />
+        </section>
       </div>
     </main>
   );
