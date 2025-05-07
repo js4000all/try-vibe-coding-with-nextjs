@@ -1,18 +1,24 @@
 "use client";
 
+import { useState } from "react";
 import BookSearch from "@/components/BookSearch";
-import type { Book } from "@/lib/api/books";
+import BookList from "@/components/BookList";
+import type { Book as GoogleBook } from "@/lib/api/google-books";
 
 export default function Home() {
-  const handleBookSelect = (book: Book) => {
-    console.log("Selected book:", book);
-    // TODO: 選択された書籍の情報を保存する処理を実装
+  const [selectedBook, setSelectedBook] = useState<GoogleBook | null>(null);
+
+  const handleBookSelect = (book: GoogleBook) => {
+    setSelectedBook(book);
   };
 
   return (
     <main className="min-h-screen p-8">
       <h1 className="text-3xl font-bold text-center mb-8">読書メモ</h1>
-      <BookSearch onSelect={handleBookSelect} />
+      <div className="space-y-8">
+        <BookSearch onSelect={handleBookSelect} />
+        <BookList />
+      </div>
     </main>
   );
 }
