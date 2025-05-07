@@ -31,7 +31,7 @@ export const searchBooks = async (query: string): Promise<GoogleBook[]> => {
       `${GOOGLE_BOOKS_API_BASE_URL}/volumes`,
       {
         params: {
-          q: query,
+          q: `intitle:${query}`,
           key: process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY,
         },
       }

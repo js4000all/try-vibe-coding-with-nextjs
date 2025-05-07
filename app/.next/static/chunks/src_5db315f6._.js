@@ -17,7 +17,7 @@ const searchBooks = async (query)=>{
     try {
         const response = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$axios$40$1$2e$9$2e$0$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`${GOOGLE_BOOKS_API_BASE_URL}/volumes`, {
             params: {
-                q: query,
+                q: `intitle:${query}`,
                 key: ("TURBOPACK compile-time value", "AIzaSyBW_gN5fjad92vrOqB3Iw87nbrOsoJNU2Q")
             }
         });
