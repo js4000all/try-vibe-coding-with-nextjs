@@ -78,4 +78,43 @@ describe("MemoEditor", () => {
       initialContent
     );
   });
+
+  it("保存成功時にフォームがリセットされる", async () => {
+    mockOnSubmit.mockResolvedValue(undefined);
+    render(<MemoEditor {...defaultProps} />);
+
+    const textarea = screen.getByPlaceholderText("メモを入力してください");
+    const submitButton = screen.getByRole("button");
+
+    fireEvent.change(textarea, { target: { value: "テストメモ" } });
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(textarea).toHaveValue("");
+      expect(submitButton).not.toBeDisabled();
+      expect(submitButton).toHaveTextContent("保存");
+    });
+  });
+
+  it("保存成功時にエラーがクリアされる", async () => {
+    mockOnSubmit.mockResolvedValue(undefined);
+    render(<MemoEditor {...defaultProps} />);
+
+    const textarea = screen.getByPlaceholderText("メモを入力してください");
+    const submitButton = screen.getByRole("button");
+
+    // 一度空メモで送信してエラーを表示
+    fireEvent.click(submitButton);
+    expect(screen.getByText("メモは1文字以上必要です")).toBeInTheDocument();
+
+    // 有効なメモを送信
+    fireEvent.change(textarea, { target: { value: "テストメモ" } });
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(
+        screen.queryByText("メモは1文字以上必要です")
+      ).not.toBeInTheDocument();
+    });
+  });
 });

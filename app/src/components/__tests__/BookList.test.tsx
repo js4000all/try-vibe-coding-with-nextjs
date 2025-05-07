@@ -1,25 +1,13 @@
-import { render, screen, waitFor, act } from "@testing-library/react";
+import {
+  render,
+  screen,
+  waitFor,
+  act,
+  fireEvent,
+} from "@testing-library/react";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import BookList from "../BookList";
-import { vi } from "vitest";
-
-const mockBooks = [
-  {
-    id: "1",
-    title: "テスト本1",
-    authors: ["テスト著者1"],
-    publisher: "テスト出版社1",
-    imageUrl: "https://example.com/test1.jpg",
-    memo: "テストメモ1",
-  },
-  {
-    id: "2",
-    title: "テスト本2",
-    authors: ["テスト著者2"],
-    publisher: "テスト出版社2",
-    imageUrl: "https://example.com/test2.jpg",
-    memo: "テストメモ2",
-  },
-];
+import { mockBooks } from "@/test/mocks/books";
 
 describe("BookList", () => {
   beforeEach(() => {
@@ -86,10 +74,13 @@ describe("BookList", () => {
       expect(screen.getByText("テスト本1")).toBeInTheDocument();
     });
 
-    const updateButton = screen.getAllByRole("button", { name: "保存" })[0];
-    await act(async () => {
-      updateButton.click();
-    });
+    const editButton = screen.getAllByRole("button")[0];
+    fireEvent.click(editButton);
+
+    const textarea = screen.getByPlaceholderText("メモを入力してください");
+    const saveButton = screen.getByRole("button", { name: "保存" });
+    fireEvent.change(textarea, { target: { value: "新しいメモ" } });
+    fireEvent.click(saveButton);
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith("/api/books/1", {
@@ -97,7 +88,7 @@ describe("BookList", () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ memo: "テストメモ1" }),
+        body: JSON.stringify({ memo: "新しいメモ" }),
       });
     });
   });

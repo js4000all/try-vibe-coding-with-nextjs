@@ -26,6 +26,7 @@ export function MemoEditor({
 
     try {
       await onSubmit(content);
+      setContent("");
     } finally {
       setIsSubmitting(false);
     }

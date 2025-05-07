@@ -1,22 +1,8 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import BookSearch from "../BookSearch";
-import { vi } from "vitest";
 import * as booksApi from "@/lib/api/books";
-
-const mockGoogleBook = {
-  id: "1",
-  title: "テスト本",
-  authors: ["テスト著者"],
-  description: "テスト説明",
-  imageLinks: {
-    thumbnail: "https://example.com/test.jpg",
-  },
-  publishedDate: "2024",
-  publisher: "テスト出版社",
-  pageCount: 100,
-};
-
-const mockSearchResults = [mockGoogleBook];
+import { mockGoogleBook, mockSearchResults } from "@/test/mocks/books";
 
 describe("BookSearch", () => {
   const mockOnSelect = vi.fn();
