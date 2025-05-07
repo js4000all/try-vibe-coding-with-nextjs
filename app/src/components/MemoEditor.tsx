@@ -1,75 +1,53 @@
 import { useState } from "react";
-import { PencilIcon, CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import type { Book } from "@/lib/models/book";
 
 interface MemoEditorProps {
-  book: Book;
-  onUpdate: (bookId: string, memo: string) => Promise<void>;
+  bookId: string;
+  onSubmit: (memo: string) => Promise<void>;
+  initialContent?: string;
 }
 
-export default function MemoEditor({ book, onUpdate }: MemoEditorProps) {
-  const [isEditing, setIsEditing] = useState(false);
-  const [memoText, setMemoText] = useState(book.memo || "");
+export function MemoEditor({
+  bookId,
+  onSubmit,
+  initialContent = "",
+}: MemoEditorProps) {
+  const [content, setContent] = useState(initialContent);
+  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
+  const handleSubmit = async () => {
+    if (!content.trim()) {
+      setError("メモは1文字以上必要です");
+      return;
+    }
 
-  const handleCancel = () => {
-    setIsEditing(false);
-    setMemoText(book.memo || "");
-  };
+    setError("");
+    setIsSubmitting(true);
 
-  const handleSave = async () => {
-    await onUpdate(book.id, memoText);
-    setIsEditing(false);
+    try {
+      await onSubmit(content);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div className="mt-2">
-      {isEditing ? (
-        <div className="space-y-2">
-          <textarea
-            value={memoText}
-            onChange={(e) => setMemoText(e.target.value)}
-            className="w-full p-2 border rounded-md text-sm"
-            rows={3}
-            placeholder="メモを入力..."
-          />
-          <div className="flex justify-end gap-2">
-            <button
-              onClick={handleCancel}
-              className="p-1 text-gray-500 hover:text-gray-700"
-            >
-              <XMarkIcon className="w-5 h-5" />
-            </button>
-            <button
-              onClick={handleSave}
-              className="p-1 text-blue-500 hover:text-blue-700"
-            >
-              <CheckIcon className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div className="flex items-start gap-2">
-          <div className="flex-1">
-            {book.memo ? (
-              <p className="text-sm text-gray-600 whitespace-pre-wrap">
-                {book.memo}
-              </p>
-            ) : (
-              <p className="text-sm text-gray-400">メモはありません</p>
-            )}
-          </div>
-          <button
-            onClick={handleEditClick}
-            className="p-1 text-gray-500 hover:text-gray-700"
-          >
-            <PencilIcon className="w-4 h-4" />
-          </button>
-        </div>
-      )}
+    <div className="space-y-4">
+      <textarea
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+        placeholder="メモを入力してください"
+        disabled={isSubmitting}
+        className="w-full h-32 p-2 border rounded"
+      />
+      {error && <p className="text-red-500">{error}</p>}
+      <button
+        onClick={handleSubmit}
+        disabled={isSubmitting}
+        className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
+      >
+        {isSubmitting ? "送信中..." : "保存"}
+      </button>
     </div>
   );
 }

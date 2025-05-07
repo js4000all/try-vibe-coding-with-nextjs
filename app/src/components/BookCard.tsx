@@ -1,6 +1,6 @@
 import { PencilIcon } from "@heroicons/react/24/outline";
 import type { Book } from "@/lib/models/book";
-import MemoEditor from "./MemoEditor";
+import { MemoEditor } from "./MemoEditor";
 
 interface BookCardProps {
   book: Book;
@@ -29,7 +29,11 @@ export default function BookCard({ book, onMemoUpdate }: BookCardProps) {
             )}
           </div>
         </div>
-        <MemoEditor book={book} onUpdate={onMemoUpdate} />
+        <MemoEditor
+          bookId={book.id}
+          onSubmit={(memo) => onMemoUpdate(book.id, memo)}
+          initialContent={book.memo}
+        />
       </div>
     </div>
   );
