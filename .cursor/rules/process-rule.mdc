@@ -23,6 +23,36 @@ alwaysApply: true
 
 - Limit the scope of each implementation task as much as possible; implement only one small feature or change at a time.
 - Alternate between implementation phases and refactoring phases.
+
+## Implementation Phase
+1. Write tests first (Test-Driven Development)
+   - Create test file
+   - Write test cases
+   - Run tests (should fail)
+2. Implement the feature
+   - Create/update component
+   - Implement functionality
+3. Run tests again
+   - Verify all tests pass
+4. Commit and push changes
+   - Use descriptive commit message
+   - Push to feature branch
+
+## Refactoring Phase
+1. Run existing tests
+   - Verify current state
+   - Document test results
+2. Perform refactoring
+   - Improve code structure
+   - Enhance readability
+   - Maintain functionality
+3. Run tests again
+   - Verify no regressions
+   - All tests should pass
+4. Commit and push changes
+   - Use descriptive commit message
+   - Push to feature branch
+
 - During implementation phases:
   - Prioritize getting things working over abstraction or unification with existing code.
   - Do not focus on code reuse or generalization at this stage.
