@@ -1,8 +1,8 @@
 ---
 description: Process rules for iterative implementation and refactoring in vibe coding workflows.
+globs:
 alwaysApply: true
 ---
-
 # Work Process Rules
 
 - Always separate different types of tasks (e.g., rule changes, environment setup, feature implementation) into distinct commits.
@@ -39,24 +39,24 @@ alwaysApply: true
 ## Branch Naming Convention
 - `main`: Production branch
 - `dev`: Development branch
-- `feature/*`: Feature development branches
-- `fix/*`: Bug fix branches
-- `docs/*`: Documentation update branches
+- `milestone/*`: Milestone-specific work branches
+  - Example: `milestone/nextjs-init`, `milestone/auth-system`
 
 ## Branch Operation Rules
 1. **Basic Rules**
    - Keep `main` branch always deployable
-   - Develop new features in `feature/*` branches
-   - Fix bugs in `fix/*` branches
-   - Update documentation in `docs/*` branches
+   - Create new milestone work in `milestone/*` branches
+   - Use one branch per milestone
+   - Branch switching is strictly controlled by user instructions
 
 2. **Branch Creation**
    - Create new branches from `dev`
-   - Use descriptive branch names
-   - One feature/fix per branch
+   - Branch names must clearly indicate milestone content
+   - Complete one milestone per branch
+   - Do not create branches without explicit user instruction
 
 3. **Merge Rules**
-   - Merge feature branches to `dev` after completion
+   - Merge milestone branches to `dev` after completion
    - Merge `dev` to `main` after testing
    - Create pull requests for all merges
    - Include clear descriptions in pull requests
