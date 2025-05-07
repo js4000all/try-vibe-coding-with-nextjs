@@ -39,13 +39,13 @@ export function MemoEditor({
         onChange={(e) => setContent(e.target.value)}
         placeholder="メモを入力してください"
         disabled={isSubmitting}
-        className="w-full h-32 p-2 border rounded"
+        className="w-full h-32 p-2 border rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-600"
       />
-      {error && <p className="text-red-500">{error}</p>}
+      {error && <p className="text-red-500 dark:text-red-400">{error}</p>}
       <button
         onClick={handleSubmit}
         disabled={isSubmitting}
-        className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
+        className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
       >
         {isSubmitting ? "送信中..." : "保存"}
       </button>
