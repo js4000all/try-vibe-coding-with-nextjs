@@ -15,14 +15,16 @@ export default function Home() {
   return (
     <main className="min-h-screen p-8">
       <h1 className="text-3xl font-bold text-center mb-8">読書メモ</h1>
-      <div className="space-y-12">
-        <section>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <section className="lg:sticky lg:top-8">
           <h2 className="text-xl font-semibold mb-4">書籍検索</h2>
           <BookSearch onSelect={handleBookSelect} />
         </section>
         <section>
           <h2 className="text-xl font-semibold mb-4">保存済み書籍</h2>
-          <BookList />
+          <div className="lg:max-h-[calc(100vh-12rem)] lg:overflow-y-auto">
+            <BookList />
+          </div>
         </section>
       </div>
     </main>

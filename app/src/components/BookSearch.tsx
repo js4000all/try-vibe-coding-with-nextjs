@@ -47,7 +47,7 @@ export default function BookSearch({ onSelect }: BookSearchProps) {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full">
       <div className="flex gap-2">
         <div className="relative flex-1">
           <input
@@ -77,7 +77,7 @@ export default function BookSearch({ onSelect }: BookSearchProps) {
       {books.length > 0 && (
         <div className="mt-4">
           <h3 className="text-lg font-medium mb-2">検索結果</h3>
-          <div className="space-y-4">
+          <div className="max-h-[calc(100vh-16rem)] overflow-y-auto space-y-4 pr-2">
             {books.map((book) => (
               <div
                 key={book.id}
