@@ -22,6 +22,6 @@ RUN set -x \
 
 WORKDIR /usr/src/app
 
-COPY ./profile.d/alias.sh /etc/profile.d
+COPY ./profile.d /etc/profile.d
 
 USER node
